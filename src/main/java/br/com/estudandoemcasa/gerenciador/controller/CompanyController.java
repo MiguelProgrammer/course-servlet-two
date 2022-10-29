@@ -20,29 +20,43 @@ public class CompanyController extends HttpServlet {
 	private CompanyService service = new CompanyService();
  
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		switch (request.getParameter("action")) {
-		
+
+		case "newform":
+			this.service.form(request, response);
+			break;
+		case "new":
+			this.service.create(request, response);
+			break;
 		case "list":
-			this.getService().list(request, response);
+			this.service.list(request, response);
 			break;
 		case "delete":
-			this.getService().delete(request, response);
+			this.service.delete(request, response);
 			break;
-		case "update":
+		case "load":
 			try {
-				this.getService().update(request, response);
-			} catch (NumberFormatException | IOException | ParseException | ServletException e) { 
+				this.service.load(request, response);
+			} catch (NumberFormatException | IOException e) { 
+				e.printStackTrace();
+			} catch (ParseException e) { 
 				e.printStackTrace();
 			}
 			break;
-
+		case "update":
+			try {
+				this.service.update(request, response);
+			} catch (NumberFormatException | IOException | ParseException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "error":
+			this.service.error(request, response);
+			break;
+			
 		default:
 			break;
 		}	
-	}
-	
-	public CompanyService getService() {
-		return service;
 	}
 }

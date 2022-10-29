@@ -22,7 +22,7 @@
 		<hr>
 		<div style="border: 1px solid gray; border-radius: 5px; margin:7%;"><br>
 			<a type="button" class="btn btn-secondary" 
-			href="${linkNewComp}">Create a New Company</a>
+			href="${action}?action=newform">Create a New Company</a>
 				<a href="${action}?action=list" type="button" class="btn btn-secondary">List Companys</a>
 			<hr>
 		</div>

@@ -56,7 +56,7 @@
 							<td><fmt:formatDate value="${comp.dateOpen}"
 									pattern="dd/MM/yyyy" /></td>
 							<td>
-								<a href="${action}?action=update&id=${comp.id}" class="btn btn-info btn-sm">Update Company</a> |  
+								<a href="${action}?action=load&id=${comp.id}" class="btn btn-info btn-sm">Update Company</a> |  
 								<a href="${action}?action=delete&id=${comp.id}" class="btn btn-danger btn-sm">Delete Company</a> 
 							</td>
 						</tr>
@@ -66,7 +66,7 @@
 
 			<hr>
 
-			<a type="button" class="btn btn-secondary" href="${linkNewComp}">Create
+			<a type="button" class="btn btn-secondary" href="${action}?action=newform">Create
 				a New Company</a> <a href="${home}" type="button"
 				class="btn btn-secondary">Home</a>
 			<hr>

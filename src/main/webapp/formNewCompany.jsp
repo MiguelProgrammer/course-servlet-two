@@ -1,8 +1,7 @@
 <!doctype html>
-<%@page import="br.com.estudandoemcasa.gerenciador.model.* %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<c:url value="/action-company" var="action-company" />
+<c:url value="/company" var="action" />
 <html lang="en">
 <head>
 <!-- Required meta tags -->
@@ -24,25 +23,25 @@
 		style="text-align: center; padding: 10% 20% 10% 20%;">
 		<div style="border: 1px solid gray; border-radius: 5px;">
 			<c:if test="${not empty company}">
-				<form method="post" action="${action-company}/update" class="form"
+				<form method="post" action="${action}?action=update" class="form"
 					style="margin: 7%;">
 					<div class="form-group">
 						<label for="company">New Company</label> <input type="text"
-							name="nameUpdateComp" value="${company.name}" required class="form-control">
-						<small id="company2" class="form-text text-muted">Name
-							Complete Your Company</small>
+							name="nameUpdateComp" value="${company.name}" required
+							class="form-control"> <small id="company2"
+							class="form-text text-muted">Name Complete Your Company</small>
 						<hr>
 						<input type="text" name="dateUpdateComp"
 							value="<fmt:formatDate value="${company.dateOpen}"
 									pattern="dd/MM/yyyy" />"
 							required class="form-control" id="dateOpen"> <small
-							class="form-text text-muted">Date Created Company</small>
-						<input type="hidden" name="idUpdateComp" value="${company.id}">
+							class="form-text text-muted">Date Created Company</small> <input
+							type="hidden" name="idUpdateComp" value="${company.id}">
 					</div>
 			</c:if>
 
 			<c:if test="${empty company}">
-				<form method="post" action="${action-company}/new" class="form"
+				<form method="post" action="${action}?action=new" class="form"
 					style="margin: 7%;">
 
 					<div class="form-group">
@@ -58,8 +57,8 @@
 			</c:if>
 
 			<button type="submit" class="btn btn-primary">Submit</button>
-			<a href="${linkListComp}" type="button" class="btn btn-secondary">List
-				Companys</a>
+			<a href="${action}?action=list" type="button"
+				class="btn btn-secondary">List Companys</a>
 			</form>
 		</div>
 	</div>
