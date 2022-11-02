@@ -11,14 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.estudandoemcasa.gerenciador.constant.Constant;
 import br.com.estudandoemcasa.gerenciador.model.Bank;
 import br.com.estudandoemcasa.gerenciador.model.Company;
+import br.com.estudandoemcasa.gerenciador.model.User;
 
-public class CompanyService  {
+public class CompanyService {
 
-	private Bank bank = new Bank(); 
-	
+	private Bank bank = new Bank();
+
 	public CompanyService() {
-	} 
-	
+	}
+
 	public void list(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("companys", this.bank.listCompany());
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/listCompany.jsp");
@@ -32,7 +33,7 @@ public class CompanyService  {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void create(HttpServletRequest request, HttpServletResponse rp) throws ServletException, IOException {
 
 		Company company = null;
@@ -52,7 +53,7 @@ public class CompanyService  {
 			rp.sendRedirect(Constant.PATH_HOME + Constant.PAGE_ERROR);
 		}
 	}
-	
+
 	public void delete(HttpServletRequest request, HttpServletResponse rp) throws IOException, ServletException {
 		if (!bank.removeCompany(this.bank.existCompanyId(Integer.parseInt(request.getParameter("id"))))) {
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
@@ -60,7 +61,7 @@ public class CompanyService  {
 		}
 		rp.sendRedirect(Constant.PATH_HOME + Constant.PAGE_LIST);
 	}
-	
+
 	public void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 		rd.forward(request, response);
@@ -71,8 +72,26 @@ public class CompanyService  {
 		rd.forward(request, response);
 	}
 
-	public void load(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String userName = request.getParameter("user");
+		String password = request.getParameter("pass"); 
+		RequestDispatcher rd = request.getRequestDispatcher("formLogin.jsp");
+
+		for (User user : Bank.getUsers()) {
+
+			if (user.verifyAccess(new User(userName, password))) {
+				rd = request.getRequestDispatcher("index.jsp");
+				request.setAttribute("user", user);
+				rd.forward(request, response);
+			} else {
+				request.setAttribute("user", "");
+				rd.forward(request, response);
+			}
+		}
+	}
+
+	public void load(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		Company company = this.bank.existCompanyId(Integer.parseInt(request.getParameter("id")));
 		String page = !company.getName().isEmpty() ? "WEB-INF/view/formNewCompany.jsp" : "WEB-INF/view/error.jsp";
@@ -86,9 +105,8 @@ public class CompanyService  {
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/formNewCompany.jsp");
 		rd.forward(request, response);
 	}
-	
-	public void update(HttpServletRequest rq, HttpServletResponse rp)
-			throws IOException {
+
+	public void update(HttpServletRequest rq, HttpServletResponse rp) throws IOException {
 
 		try {
 			this.bank.setCompany(new Company(Integer.parseInt(rq.getParameter("idUpdateComp")),
@@ -102,31 +120,35 @@ public class CompanyService  {
 		rp.sendRedirect(Constant.PAGE_LIST);
 	}
 
-	public void selectMethod(String nameMethod, HttpServletRequest rq, HttpServletResponse rp) throws IOException, ServletException {
-		
+	public void selectMethod(String nameMethod, HttpServletRequest rq, HttpServletResponse rp)
+			throws IOException, ServletException {
+
 		switch (nameMethod) {
-		case "list": 
+		case "list":
 			this.list(rq, rp);
 			break;
-		case "delete": 
+		case "delete":
 			this.delete(rq, rp);
 			break;
-		case "newcompany": 
+		case "newcompany":
 			this.newform(rq, rp);
 			break;
-		case "create": 
+		case "create":
 			this.create(rq, rp);
 			break;
-		case "load": 
+		case "load":
 			this.load(rq, rp);
 			break;
-		case "update": 
+		case "update":
 			this.update(rq, rp);
+			break;
+		case "login":
+			this.login(rq, rp);
 			break;
 
 		default:
 			break;
 		}
-		
+
 	}
 }

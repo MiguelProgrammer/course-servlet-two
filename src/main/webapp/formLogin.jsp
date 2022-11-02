@@ -16,19 +16,37 @@
 <title>Welcome to Bank of Companys</title>
 </head>
 <body>
-	
-	<div class="container" style="text-align: center; padding:10% 20% 10% 20%;   margin:7%;">
-		<b>Menu System</b>
-		<hr>
-		<c:if test="${not empty user}">
-			<p class="alert-success">Welcome user: ${user.login}</p>
-		</c:if>
-		<hr>
-		<div style="border: 1px solid gray; border-radius: 5px;"><br>
-			<a type="button" class="btn btn-secondary" href="${action}action=newcompany">Create a New Company</a>
-			<a href="${action}action=list" type="button" class="btn btn-secondary">List Companys</a>
-			<hr>
+
+	<div class="container"
+		style="text-align: center; padding: 1% 20% 10% 20%;">
+
+		<div style="border: 1px solid gray; border-radius: 5px;">
+
+			<form method="post" action="${action}action=login" class="form"
+				style="margin: 7%;">
+
+				<div class="jumbotron jumbotron-fluid">
+					Company
+					<p class="lead">Your favorite BANK.</p>
+				</div>
+				<c:if test="${empty user}">
+					<p class="alert-danger">You not have access.</p>
+				</c:if>
+				<div class="form-group" style="text-align: left">
+					<label for="company"> User</label> <input type="text" name="user"
+						required class="form-control"> <small id="company2"
+						class="form-text text-muted">Login User</small>
+					<hr>
+					<label for="pass">Password</label> <input type="password"
+						name="pass" required class="form-control"> <small
+						id="pass" class="form-text text-muted">Password</small>
+					<hr>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Login</button>
+			</form>
 		</div>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

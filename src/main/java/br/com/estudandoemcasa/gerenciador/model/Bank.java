@@ -7,6 +7,7 @@ import java.util.List;
 public class Bank {
 
 	private static List<Company> companys = new ArrayList<>();
+	private static List<User> users = new ArrayList<>();
 
 	public Bank() {
 	}
@@ -16,6 +17,21 @@ public class Bank {
 		Company company2 = new Company(2, "Company Two", new Date());
 		companys.add(company);
 		companys.add(company2);
+		
+		User user = new User("mike", "1234");
+		User user2 = new User("mike", "4321");
+		users.add(user);
+		users.add(user2);
+	}
+	
+	
+
+	public static List<User> getUsers() {
+		return users;
+	}
+
+	public static void setUsers(List<User> users) {
+		Bank.users = users;
 	}
 
 	public void addCompany(Company company) {
