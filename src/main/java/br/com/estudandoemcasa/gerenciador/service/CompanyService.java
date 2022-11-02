@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.estudandoemcasa.gerenciador.constant.Constant;
 import br.com.estudandoemcasa.gerenciador.model.Bank;
@@ -82,10 +83,11 @@ public class CompanyService {
 
 			if (user.verifyAccess(new User(userName, password))) {
 				rd = request.getRequestDispatcher("index.jsp");
+				HttpSession session = request.getSession();
 				request.setAttribute("user", user);
 				rd.forward(request, response);
 			} else {
-				request.setAttribute("user", "");
+				request.setAttribute("user", ""); 
 				rd.forward(request, response);
 			}
 		}
