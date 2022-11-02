@@ -66,7 +66,7 @@
 
 			<hr>
 
-			<a type="button" class="btn btn-secondary" href="${action}?action=newform">Create
+			<a type="button" class="btn btn-secondary" href="${action}?action=newcompany">Create
 				a New Company</a> <a href="${home}" type="button"
 				class="btn btn-secondary">Home</a>
 			<hr>

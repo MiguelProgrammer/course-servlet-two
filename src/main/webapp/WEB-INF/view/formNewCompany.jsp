@@ -1,7 +1,7 @@
 <!doctype html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<c:url value="/company" var="action" />
+<c:url value="/company?" var="action" />
 <html lang="en">
 <head>
 <!-- Required meta tags -->
@@ -23,7 +23,7 @@
 		style="text-align: center; padding: 10% 20% 10% 20%;">
 		<div style="border: 1px solid gray; border-radius: 5px;">
 			<c:if test="${not empty company}">
-				<form method="post" action="${action}?action=update" class="form"
+				<form method="post" action="${action}action=update" class="form"
 					style="margin: 7%;">
 					<div class="form-group">
 						<label for="company">New Company</label> <input type="text"
@@ -41,7 +41,7 @@
 			</c:if>
 
 			<c:if test="${empty company}">
-				<form method="post" action="${action}?action=new" class="form"
+				<form method="post" action="${action}action=create" class="form"
 					style="margin: 7%;">
 
 					<div class="form-group">
@@ -57,7 +57,7 @@
 			</c:if>
 
 			<button type="submit" class="btn btn-primary">Submit</button>
-			<a href="${action}?action=list" type="button"
+			<a href="${action}action=list" type="button"
 				class="btn btn-secondary">List Companys</a>
 			</form>
 		</div>
