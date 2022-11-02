@@ -8,5 +8,7 @@ public class Constant {
 	public static final SimpleDateFormat DATE_PATTERN_FORM = new SimpleDateFormat("yyyy-MM-dd");
 	public static final String PAGE_ERROR = "?action=error";
 	public static final String PAGE_LIST = "?action=list";
+	public static final String PAGE_LOGIN = "?action=login";
 	public static final String PATH_HOME = "/gerenciador/company";
+	public static final String PATH_INDEX = "/gerenciador";
 }

@@ -28,10 +28,7 @@
 				<div class="jumbotron jumbotron-fluid">
 					Company
 					<p class="lead">Your favorite BANK.</p>
-				</div>
-				<c:if test="${empty user}">
-					<p class="alert-danger">You not have access.</p>
-				</c:if>
+				</div> 
 				<div class="form-group" style="text-align: left">
 					<label for="company"> User</label> <input type="text" name="user"
 						required class="form-control"> <small id="company2"

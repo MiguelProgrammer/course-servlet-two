@@ -16,30 +16,42 @@
 <title>Welcome to Bank of Companys</title>
 </head>
 <body>
-	
-	<div class="container" style="text-align: center; padding:10% 20% 10% 20%;   margin:7%;">
+
+	<div class="container"
+		style="text-align: center; padding: 10% 20% 10% 20%; margin: 7%;">
 		<b>Menu System</b>
 		<hr>
+
 		<c:if test="${not empty user}">
 			<p class="alert-success">Welcome user: ${user.login}</p>
-		</c:if>
-		<hr>
-		<div style="border: 1px solid gray; border-radius: 5px;"><br>
-			<a type="button" class="btn btn-secondary" href="${action}action=newcompany">Create a New Company</a>
-			<a href="${action}action=list" type="button" class="btn btn-secondary">List Companys</a>
 			<hr>
-		</div>
+			<div style="border: 1px solid gray; border-radius: 5px;">
+				<br> <a type="button" class="btn btn-secondary"
+					href="${action}action=newcompany">Create a New Company</a> <a
+					href="${action}action=list" type="button" class="btn btn-secondary">List
+					Companys</a>
+				<hr>
+			</div>
+		</c:if>
+		
+		<c:if test="${empty user}">
+			<div style="border: 1px solid gray; border-radius: 5px;">
+				<br> <a type="button" class="btn btn-secondary"
+					href="${action}action=loginform">Login</a>
+				<hr>
+			</div>
+		</c:if>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@
 			<b>Name Company already exists on Bank of Company</b>
 			<hr>
 			<a type="button" class="btn btn-secondary" 
-			href="${action}?action=newform">Create a New Company</a>
+			href="${action}?action=newcompany">Create a New Company</a>
 				<a href="${action}?action=list" type="button" class="btn btn-secondary">List Companys</a>
 			<hr>
 		</div>

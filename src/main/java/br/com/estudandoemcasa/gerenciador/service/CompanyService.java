@@ -64,31 +64,36 @@ public class CompanyService {
 	}
 
 	public void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/error.jsp");
+		rd.forward(request, response);
+	}
+
+	public void loginform(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		RequestDispatcher rd = request.getRequestDispatcher("formLogin.jsp");
 		rd.forward(request, response);
 	}
 
 	public void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		rd.forward(request, response);
+		response.sendRedirect(Constant.PATH_INDEX);
+		return;
 	}
 
 	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String userName = request.getParameter("user");
-		String password = request.getParameter("pass"); 
-		RequestDispatcher rd = request.getRequestDispatcher("formLogin.jsp");
+		String password = request.getParameter("pass");  
 
 		for (User user : Bank.getUsers()) {
 
-			if (user.verifyAccess(new User(userName, password))) {
-				rd = request.getRequestDispatcher("index.jsp");
-				HttpSession session = request.getSession();
-				request.setAttribute("user", user);
-				rd.forward(request, response);
-			} else {
-				request.setAttribute("user", ""); 
-				rd.forward(request, response);
+			if (user.verifyAccess(new User(userName, password))) { 
+				HttpSession session = request.getSession(); 
+				session.setAttribute("user", user);
+				this.index(request, response);
+				return;
+			} else { 		
+				this.loginform(request, response);
+				return;
 			}
 		}
 	}
@@ -146,6 +151,12 @@ public class CompanyService {
 			break;
 		case "login":
 			this.login(rq, rp);
+			break;
+		case "loginform":
+			this.loginform(rq, rp);
+			break;
+		case "error":
+			this.error(rq, rp);
 			break;
 
 		default:
