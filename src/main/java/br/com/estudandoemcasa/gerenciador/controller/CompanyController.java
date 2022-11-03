@@ -19,17 +19,13 @@ public class CompanyController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String action = request.getParameter("action");
-		HttpSession session = request.getSession(); 
+		HttpSession session = request.getSession();  
 		
-		System.out.println(session.getAttribute("user"));
-		
-		if(session.getAttribute("user") == null) {
-			System.out.println("aqui");
+		if(session.getAttribute("user") == null) { 
 			action = "login";
 		}
 		
-		CompanyService companyService = new CompanyService(); 
-		System.out.println(action);
+		CompanyService companyService = new CompanyService();  
 		companyService.selectMethod(action, request, response); 
 	}
 }

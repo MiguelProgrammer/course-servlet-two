@@ -26,11 +26,9 @@ public class CompanyService {
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/listCompany.jsp");
 		try {
 			rd.forward(request, response);
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
+		} catch (ServletException e) { 
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) { 
 			e.printStackTrace();
 		}
 	}
@@ -113,6 +111,12 @@ public class CompanyService {
 		rd.forward(request, response);
 	}
 
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		this.loginform(request, response);
+	}
+
 	public void update(HttpServletRequest rq, HttpServletResponse rp) throws IOException {
 
 		try {
@@ -157,6 +161,9 @@ public class CompanyService {
 			break;
 		case "error":
 			this.error(rq, rp);
+			break;
+		case "logout":
+			this.logout(rq, rp);
 			break;
 
 		default:

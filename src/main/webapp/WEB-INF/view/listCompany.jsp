@@ -69,6 +69,9 @@
 			<a type="button" class="btn btn-secondary" href="${action}?action=newcompany">Create
 				a New Company</a> <a href="${home}" type="button"
 				class="btn btn-secondary">Home</a>
+				<hr>
+				<a href="${action}?action=logout" type="button"
+				class="btn btn-danger">Logout</a>
 			<hr>
 		</div>
 	</div>
