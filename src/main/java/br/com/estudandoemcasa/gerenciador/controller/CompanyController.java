@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.estudandoemcasa.gerenciador.service.CompanyService;
 
-@WebServlet("/")
+@WebServlet(urlPatterns = "/")
 public class CompanyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
