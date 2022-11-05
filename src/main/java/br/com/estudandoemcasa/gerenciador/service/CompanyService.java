@@ -78,7 +78,8 @@ public class CompanyService {
 	}
 
 	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		
 		String userName = request.getParameter("user");
 		String password = request.getParameter("pass");  
 
@@ -132,7 +133,7 @@ public class CompanyService {
 	}
 
 	public void selectMethod(String nameMethod, HttpServletRequest rq, HttpServletResponse rp)
-			throws IOException, ServletException {
+			throws IOException, ServletException { 
 
 		switch (nameMethod) {
 		case "list":
@@ -156,7 +157,7 @@ public class CompanyService {
 		case "login":
 			this.login(rq, rp);
 			break;
-		case "loginform":
+		case "loginform": 
 			this.loginform(rq, rp);
 			break;
 		case "error":
