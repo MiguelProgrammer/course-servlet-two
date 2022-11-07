@@ -15,22 +15,24 @@ import javax.servlet.http.HttpSession;
 
 import br.com.estudandoemcasa.gerenciador.service.CompanyService;
 
-@WebFilter(urlPatterns = "/company")
-public class AccessFilter extends HttpFilter implements Filter {
+//@WebFilter(urlPatterns = "/*")
+public class MonitoringFilter extends HttpFilter implements Filter {
 	
 	CompanyService service = new CompanyService();
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		
+		Long before = System.currentTimeMillis();
+		
+		System.out.println("Before: " + before);
 
 		HttpServletRequest rq = (HttpServletRequest) request;
-		HttpServletResponse rp = (HttpServletResponse) response;
-		HttpSession session = rq.getSession(); 
-
-		if (session.getAttribute("user") == null && !rq.getParameter("action").equals("login")) {
-			service.loginform(rq, rp);
-			return;
-		}
+		HttpServletResponse rp = (HttpServletResponse) response; 
 		chain.doFilter(rq, rp);
+		
+		Long after = System.currentTimeMillis();
+		System.out.println("After: " + after);
+		System.out.println("Diference: " + (after - before));
 	}
 }

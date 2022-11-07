@@ -17,4 +17,15 @@
 		<url-pattern>/ola</url-pattern>
 	</servlet-mapping>
 	-->
+	
+	<filter>
+		<filter-name>MF</filter-name>
+		<filter-class>br.com.estudandoemcasa.gerenciador.controller.MonitoringFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>MF</filter-name>
+		<url-pattern>/company</url-pattern>
+	</filter-mapping>
+	
 </web-app>
