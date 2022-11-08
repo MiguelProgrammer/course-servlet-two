@@ -17,14 +17,14 @@ public class Bank {
 		Company company2 = new Company(2, "Company Two", new Date());
 		companys.add(company);
 		companys.add(company2);
-		
+
 		User user = new User("mike", "1234");
 		User user2 = new User("mike", "4321");
 		users.add(user);
 		users.add(user2);
 	}
-	
-	
+
+
 
 	public static List<User> getUsers() {
 		return users;
@@ -50,7 +50,7 @@ public class Bank {
 
 	public Company existCompanyId(Integer idCompany) {
 		for (Company cp : this.listCompany()) {
-			if (cp.getId().equals(idCompany)) { 
+			if (cp.getId().equals(idCompany)) {
 				return cp;
 			}
 		}
@@ -74,7 +74,7 @@ public class Bank {
 		}
 		return null;
 	}
-	
+
 	public Boolean removeCompany(Company company) {
 		return companys.remove(company);
 	}

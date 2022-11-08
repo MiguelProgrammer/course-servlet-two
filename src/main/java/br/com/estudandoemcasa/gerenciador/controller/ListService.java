@@ -17,34 +17,35 @@ import br.com.estudandoemcasa.gerenciador.model.Company;
 
 @WebServlet("/companys")
 public class ListService extends HttpServlet {
-	private static final long serialVersionUID = 1L;  
+	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		List<Company> companys = new Bank().listCompany();
-		
+
 		String valueHead =  request.getHeader("Accept");
 		String type;
-		
+
 		/* Json */
 		Gson gson = new Gson();
-		
-	
-		
+
+
+
 		if(valueHead.endsWith("json")) {
 			type = gson.toJson(companys);
 			response.setContentType("application/json");
-		} else {	
+		} else {
 			/* Xml */
 			XStream toXml = new XStream();
 			toXml.alias("company", Company.class);
-			response.setContentType("application/xml"); 
+			response.setContentType("application/xml");
 			type = toXml.toXML(companys);
-		
+
 		}
-		
+
 		response.getWriter().print(type);
-		
+
 	}
 
 }

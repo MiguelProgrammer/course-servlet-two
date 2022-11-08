@@ -7,7 +7,7 @@ public class Company {
 	private Integer id;
 	private String name;
 	private Date dateOpen = new Date();
-	public static Integer count; 
+	public static Integer count;
 
 	public Company() {
 	}
@@ -18,7 +18,7 @@ public class Company {
 		this.dateOpen = dateOpen;
 		count = this.id;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -30,11 +30,11 @@ public class Company {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public void setDateOpen(Date dateOpen) {
 		this.dateOpen = dateOpen;
 	}
-	
+
 	public Date getDateOpen() {
 		return dateOpen;
 	}

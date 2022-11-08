@@ -14,9 +14,10 @@ import br.com.estudandoemcasa.gerenciador.service.CompanyService;
 public class CompanyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException { 
-		CompanyService companyService = new CompanyService();  
-		companyService.selectMethod(request.getParameter("action"), request, response); 
+			throws ServletException, IOException {
+		CompanyService companyService = new CompanyService();
+		companyService.selectMethod(request.getParameter("action"), request, response);
 	}
 }

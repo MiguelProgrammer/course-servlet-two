@@ -26,9 +26,9 @@ public class CompanyService {
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/listCompany.jsp");
 		try {
 			rd.forward(request, response);
-		} catch (ServletException e) { 
+		} catch (ServletException e) {
 			e.printStackTrace();
-		} catch (IOException e) { 
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -78,19 +78,19 @@ public class CompanyService {
 	}
 
 	public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+
+
 		String userName = request.getParameter("user");
-		String password = request.getParameter("pass");  
+		String password = request.getParameter("pass");
 
 		for (User user : Bank.getUsers()) {
 
-			if (user.verifyAccess(new User(userName, password))) { 
-				HttpSession session = request.getSession(); 
+			if (user.verifyAccess(new User(userName, password))) {
+				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				this.index(request, response);
 				return;
-			} else { 		
+			} else {
 				this.loginform(request, response);
 				return;
 			}
@@ -133,7 +133,7 @@ public class CompanyService {
 	}
 
 	public void selectMethod(String nameMethod, HttpServletRequest rq, HttpServletResponse rp)
-			throws IOException, ServletException { 
+			throws IOException, ServletException {
 
 		switch (nameMethod) {
 		case "list":
@@ -157,7 +157,7 @@ public class CompanyService {
 		case "login":
 			this.login(rq, rp);
 			break;
-		case "loginform": 
+		case "loginform":
 			this.loginform(rq, rp);
 			break;
 		case "error":
