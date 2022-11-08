@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 
 import br.com.estudandoemcasa.gerenciador.model.Bank;
@@ -20,22 +21,30 @@ public class ListService extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Company> companys = new Bank().listCompany(); 
+		List<Company> companys = new Bank().listCompany();
 		
-		XStream toXml = new XStream();
-		toXml.alias("company", Company.class);
-		String xml = toXml.toXML(companys);
+		String valueHead =  request.getHeader("Accept");
+		String type;
 		
-		response.setContentType("application/xml");
-		response.getWriter().print(xml);
-		
-		/* Mapper object with Gson lib
+		/* Json */
 		Gson gson = new Gson();
-		String json = gson.toJson(companys);
 		
-		response.setContentType("application/json");
-		response.getWriter().print(json);
-		*/
+	
+		
+		if(valueHead.endsWith("json")) {
+			type = gson.toJson(companys);
+			response.setContentType("application/json");
+		} else {	
+			/* Xml */
+			XStream toXml = new XStream();
+			toXml.alias("company", Company.class);
+			response.setContentType("application/xml"); 
+			type = toXml.toXML(companys);
+		
+		}
+		
+		response.getWriter().print(type);
+		
 	}
 
 }
